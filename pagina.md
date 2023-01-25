@@ -1,6 +1,15 @@
 # Notas mal hechas de cosas que no sé que son
 
+## Índice
+
+* [Índice](#índice)
+* [Terminal de Linux y Bash-Shell](#terminal-de-linux-y-bash-shell)
+    * [Introducción](#introducción)
+    * [Terminal](#terminal)
+
 ## Terminal de Linux y Bash-Shell
+
+### Introducción
 
 A ver, es medio raro lo de Bash Shell y eso de las Shell (no entiendo bien qué es).  
 Basicamente Bash Shell es (seguro no es correcto tecnicamente) como un lenguaje de programación no compilado, que es interpretado por la propia terminal.  
@@ -10,3 +19,10 @@ Hay varias Shell, Bash Shell es la más popular y creo que es la de Linux, Power
 
 Para ejecutar un script bash (un código escrito en un archivo .sh) simplemente hay que abrir el archivo (obviamente desde la terminal).  
 El script funciona como una "entidad independiente de la terminal", es decir si el script se dirige a alguna carpeta, la terminal no se moverá.
+
+[Volver al índice](#índice)
+
+---
+
+### Terminal
+

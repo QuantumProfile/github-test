@@ -1,9 +1,19 @@
 html{
     background-color: #131313;
-    color: #1c7;
+    color: white;
     font-family: Verdana;
     text-align: center;
 }
 p{
-    color: white;
+    text-align: justify;
+}
+h1{
+    color: #1c7;
+}
+h2{
+    color: #1c7;
+}
+h3{
+    color: #a454ff;
+    text-align: left;
 }
