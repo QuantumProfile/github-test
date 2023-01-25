@@ -2,13 +2,10 @@
 
 ## Índice
 
-<!--* [Índice](#índice)
+* [Índice](#índice)
 * [Terminal de Linux y Bash-Shell](#terminal-de-linux-y-bash-shell)
     * [Introducción](#introducción)
-    * [Terminal](#terminal)-->
-Primer termino
- : Primera definición
- : Segunda definición
+    * [Terminal](#terminal)
 
 ## Terminal de Linux y Bash-Shell
 
