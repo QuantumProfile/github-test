@@ -2,7 +2,6 @@ html{
     background-color: #131313;
     color: white;
     font-family: Verdana;
-    text-align: center;
 }
 a{
     text-decoration: none;
@@ -17,9 +16,11 @@ p{
 }
 h1{
     color: #1c7;
+    text-align: center;
 }
 h2{
     color: #1c7;
+    text-align: center;
 }
 h3{
     color: #a454ff;
