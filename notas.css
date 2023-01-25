@@ -4,6 +4,16 @@ html{
     font-family: Verdana;
     text-align: center;
 }
+a{
+    text-decoration: none;
+    color: aquamarine;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}
+a:hover{
+    color: aqua;
+}
 p{
     text-align: justify;
 }
