@@ -1,6 +1,9 @@
 html{
-    background-color: #242424;
+    background-color: #131313;
     color: #1c7;
     font-family: Verdana;
     text-align: center;
+}
+p{
+    color: white;
 }
