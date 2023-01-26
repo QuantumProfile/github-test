@@ -129,6 +129,8 @@ Recibe como parámetro el alias o nombre que le hayas puesto a un comando, y eli
 #### **comando touch**
 Crea un archivo, recibe como parámetro la ubicación del archivo (el directorio del archivo padre, junto con el nombre del archivo, junto con la extensión), si la ubicación es el nombre del archivo, se tiene implícito que la dirección es ./[nombre del archivo]  
 Directorios o archivos con espacios en blanco deben nombrarse entre comillas
+
+[Volver al índice](#índice "índice")
 #### **Operadores**
 \>  
 Es un operador binario, en la izquierda va un comando que se quiere ejecutar, en la derecha va la ubicación del archivo donde se va a ejecutar (funciona de la misma manera que en el [comando touch](#comando-touch))  
@@ -208,6 +210,7 @@ Sepáralos con ;
 Imprime la fecha y hora
 #### **comando curl**
 No tengo idea xd :tf:
+
 [Regresar al índice](#índice)
 #### **comando zip**
 Comprime archivos, puede tener varios parámetros, el primer parámetro es la ubicación del archivo .zip a donde se van a comprimir los archivos, los siguientes parámetros son las ubicaciones de los archivos que vamos a comprimir (las ubicaciones funcionan de la misma manera que en el [comando touch](#comando-touch)), pueden ser *[cadena de texto], que representa el conjunto de todos los archivos que terminan con esa cadena de texto  
