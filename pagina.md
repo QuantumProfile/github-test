@@ -91,6 +91,7 @@
     * [bucle for](#bucle-for)
     * [bucle while](#bucle-while)
     * [funciones](#funciones)
+* [Bibliografía](#bibliografía)
 
 ## Terminal de Linux y Bash-Shell
 
