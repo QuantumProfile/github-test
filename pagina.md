@@ -41,7 +41,56 @@
         * [comando chmod](#comando-chmod)
         * [comando sudo](#comando-sudo)
     * [Bash Shell](#bash-shell)
-
+        * [cabecera](#cabecera)
+        * [terminal](#terminal-1)
+        * [variables](#variables)
+        * [operaciones](#operaciones)
+        * [obtener el valor de lo que retorna un comando](#obtener-el-valor-de-lo-que-retorna-un-comando)
+        * [parámetros](#parámetros)
+        * [comando read](#comando-read)
+        * [operadores relacionales](#operadores-relacionales)
+        * [if else](#if-else)
+        * [case](#case)
+        * [arreglos](#arreglos)
+        * [comando unset](#comando-unset)
+        * [bucles](#bucles)
+        * [funciones](#funciones)
+* [Python](#python)
+    * [protip](#protip)
+    * [función print e input](#función-print-e-input)
+    * [comentarios](#comentarios)
+    * [operaciones](#operaciones-1)
+    * [función type](#función-type)
+    * [conversión de tipos](#conversión-de-tipos)
+    * [función dir](#función-dir)
+    * [listas](#listas)
+        * [método append](#método-append)
+        * [función len](#función-len)
+        * [modificar elementos](#modificar-elementos)
+        * [método insert](#método-insert)
+        * [método extend](#método-extend)
+        * [método index](#método-index)
+        * [método count](#método-count)
+        * [método pop](#método-pop)
+        * [método remove](#método-remove)
+        * [método clear](#método-clear)
+        * [método sort](#método-sort)
+        * [funciones max y min](#funciones-min-y-max)
+    * [tuplas](#tuplas)
+    * [palabra reservada del](#palabra-reservada-del)
+    * [diccionarios](#diccionarios)
+        * [método keys](#método-keys)
+        * [método items](#método-items)
+    * [Valor nulo](#valor-nulo)
+    * [conjuntos](#conjuntos)
+        * [método add](#método-add)
+        * [método remove](#método-remove)
+    * [métodos de cadenas](#métodos-de-cadenas)
+    * [fstrings](#fstrings)
+    * [if else](#if-else-1)
+    * [bucle for](#bucle-for)
+    * [bucle while](#bucle-while)
+    * [funciones](#funciones)
 
 ## Terminal de Linux y Bash-Shell
 
@@ -139,11 +188,14 @@ Si no existe el archivo, se crea automáticamente
 \>>  
 Es un operador binario, inserta el comando de la izquierda en el archivo que se encuentra en la ubicación dada por el parámetro de la derecha (la ubicación funciona igual que en el operador anterior)
 
+No estoy seguro, pero la diferencia entre > y >> es que > borra todo y pone el comando, mientras que >> lo hace a la línea siguiente.
+
 |  
 Es un operador binario, se llama pipe, es una composición de comandos, la salida del comando de la izquierda es utilizado para la entrada del comando de la derecha  
 A veces la salida del comando de la izquierda es el archivo donde realizó algo
 #### **comando echo**
-Imprime un texto, recibe como parámetro el texto (textos con espacios en blanco deben nombrarse entre comillas)
+Imprime un texto, recibe como parámetro el texto (textos con espacios en blanco deben nombrarse entre comillas)  
+Puede recibir múltiples parámetros que los escribe en la misma línea
 #### **comando cat**
 Recibe como parámetro la ubicación de un archivo (funciona de la misma manera que en el [comando touch](#comando-touch)) e imprime su contenido
 #### **comando mkdir**
@@ -230,6 +282,8 @@ El explícito tiene 9 caracteres, que se dividen en las 3 partes de 3 caracteres
 
 El de números simplemente convierte cada parte a número decimal (teniendo en cuenta que true=1 y false=0), como en 3 cifras el máximo número en binario es 7 (que es una cifra en decimal), las 3 partes se compactan a 1 cifra y así obtenemos un formato de únicamente 3 cifras (los correspondientes a owner, group y anyone).
 
+El [comando mkdir](#comando-mkdir) tiene una bandera llamada m, con la cual un inputa anterior al directorio es la información de los permisos en el formato de números
+
 #### **comando chmod**
 Recibe dos parámetros, el primero es una cadena de texto que representa la información de los permisos que se le van a imponer al segundo parámetro (el archivo, con todo lo del [comando touch](#comando-touch)), en el formato de número (el de 3 cifras)  
 chmod +x agrega permisos de ejecución  
@@ -242,7 +296,309 @@ Te permite ejecutar un comando como super usuario, recibe como argumento el coma
 ---
 
 ### Bash-Shell
+#### **cabecera**
+No tengo idea qué es pero básciamente es como lo de \<!DOCTYPE html> que hay que poner al inicio siempre en un html para indicar que lo que vamos a escribir es html a pesar de que ya la maldita extensión lo está diciendo, osea el .html ya te lo dice !!!! No entiendo, así que pues eso.  
+
+Esta cabecera, para Bash Shell es #!/bin/bash  
+
+Incluso es peor, porque lo de "#" indica que va a ser un comentario, osea ni siquiera se ejecuta, al menos en html es como una etiqueta, no se !!! pero bueno, pasas que cosan.
+#### **terminal**
+Todos los comandos de la terminal pueden ejecutarse desde un script con la misma sintaxis
+#### **variables**
+las variables funcionan como en php, asignas la variable normalmente y la llamas con el símbolo $ al inicio  
+Al asignar la variable tienes que poner el igual y todo junto  
+La variable $HOME es la que hace referencia al directorio ~  
+Con el comando env, se imprime un listado de todas las variables de entorno que hay  
+La palabra reservada export antes de asignar una variable se usa para declar una variable de entorno  
+Un script es como abrir una nueva terminal, así que al crear una variable de entorno no puedes acceder a ella desde el script  
+Los booleanos se manejan con números (0 y 1)
+#### **operaciones**
+Se escriben dentro de $(())
+#### **obtener el valor de lo que retorna un comando**
+Se hace encerrando el comando en $()  
+Hay que tomar en cuenta que acá los comandos funcionan medio raro, ya dije que era raro al inicio, basicamente cosas que deberían retornar void de hecho realmente retornan algo así como la última cosa que modificó el comando, esto también lo vimos en [Operadores](#operadores)
+#### **parámetros**
+Dentro del script podemos obtener los parámetros que se introducen al ejecutar el script, \$n nos devuelve el n-ésimo parámetro, \$# nos devuelve la cantidad de parámetros que se le ha pasado al script  
+Cualquier texto es interpetado como string, excepto si empieza con un $
+#### **comando read**
+read -p "[parámetro 1]" [parámetro 2]
+parámetro 1 es lo que se le mostrará al usuario, parámetro 2 es el nombre de la variable donde se va a guardar lo que ingrese el usuario  
+Es básicamente un input de python o un prompt de javascript, pero se parece más a lo primero que dije.
+#### **Operadores relacionales**
+* = --> -eq
+* != --> -ne
+* \> --> -gt
+* \>= --> -ge
+* < --> -lt
+* <= --> -le
+#### **if else**
+Única condición
+
+La sintaxis es estricta, debe ser if seguido de un espacio, seguido de los paréntesis, que deben tener otros paréntesis dentro, y lo que está dentro de los paréntesis debe tener un padding de 1 espacio, es decir: if (( condición )),
+luego de eso va un ; un espacio y un then, el "; then" funciona como el ":" de python  
+Acá no se abre y cierra con {} sino que if ya lo abre, y se tiene que cerrar con un fi (viene de final if), tampoco se separan los enunciados con ;  
+El fi cierra toda la condicional, así como if la abre toda (xd), así que para poner un else se debe poner dentro del bloque que va a ser condicional
+
+Múltiples condiciones
+
+Lo único que cambia es lo que va después del espacio que va después del if, cada condición debe igualmente tener un padding de 1 espacio, y se separan por espacios, en vez de abrir cada condición con (()) se abren con [], los operadores de condiciones (booleanos) son los normales, el "; then" se pone o se concatena a la última condición, es decir if [ condición 1 ] op [ condición 2 ] op ... [ condición final ]; then, donde cada op es una operación de booleanos
+
+Un tabulado es igual a 4 espacios
+#### **case**
+```bash
+case $opcion in
+    "A") echo "Ha ingresado la opción A";;
+    "B") echo "Ha ingresado la opción B";;
+    [C-Z]) echo "Ha ingresado un valor fuera del rango";;
+    *) echo "por favor solo caracteres dentro del rango"
+esac
+```
+hace lo que tú crees que hace, el * a veces se pone entre comillas, es decir lo mismo pero "*" en vez de *, y representa el default de los cases
+#### **arreglos**
+Se escriben con () y se separan con espacios, nuevamente sucede lo que pasa en [parámetros](#parámetros "parámetros")
+Esto es un rango `{A..Z}`, esto es otro rango `{20..30}`
+~~~bash
+echo "${arreglo[*]}"
+~~~
+imprime todos los valores del arreglo en una sola línea separados por espacios,  
+como en matemáticas 
+```bash
+${#arreglo[*]}
+```
+retorna la cardinalidad del arreglo
+
+Con `${arreglo[i]}` se accede al elemento del arreglo en el índice i
+#### **comando unset**
+con
+```bash
+unset arreglo[i]
+```
+se elimina el elemento del arreglo en el índice i  
+No deja huecos, es decir, reduce la cardinalidad del arreglo
+#### **bucles**
+```bash
+for elemento in ${arreglo[*]}
+do
+    echo "índice: $elemento"
+done
+```
+hace lo que te imaginas
+```bash
+for ((i=0; i<${#arreglo[*]}; i++))
+do
+    echo "elemento en el índice $i: ${arreglo[i]}"
+done
+```
+hace lo mismo  
+Recuerda que en Bash Shell la sintaxis es muy estricta, después del for viene un espacio, las operaciones de hacen sin espacios, etc.
+
+```bash
+#IFS significa Internal Field Separator
+while IFS= read line
+do
+    echo "$line"
+done < $archivo
+```
+lee línea por línea.  
+La estructura del while es 
+```
+while [ condición ]
+do
+    tu código
+done
+```
+si [ condición ] es :, es decir while :, hace un bucle infinito
+#### **funciones**
+Como siempre, después del nombre de la función debe haber un espacio y ya luego se pone (), luego otro espacio y luego {}
+
+Aquí las funciones se llaman sin los (), y no se puede llamar antes de declarar
+
+Tampoco se escribe nada adentro de (), si se necesitan parámetros, funcionan igual que en [parámetros](#parámetros), solo que en vez de ejecutar un archivo, se llama a la función
+
+[Volver al índice](#índice "índice")
+
+---
+
+## Python
+### **protip**
+Hay una página para hacer código, se llama repl.it  
+https://replit.com/
+### **función print e input**
+print() imprime lo que le metas, en consola, input() imprime en consola lo que le metas y pide al usuario que escriba algo y lo retorna
+### **comentarios**
+Son igual que en bash, con # seguido del comentario
+### **operaciones**
+* a//b devuelve la parte entera de a/b
+* && --> and
+* ! --> not
+* || --> or
+* elemento in lista devuelve True si elemento está en la lista o si la cadena elemento se encuentra en la cadena lista, y False otherwise
+* not in lo contrario
 
 
+### **función type**
+type(variable) devuelve el tipo de dato en formato string
+### **conversión de tipos**
+* int() convierte a entero
+* float() convierte a flotante
+* list() convierte a lista
+* tuple() convierte a tupla
+### **función dir**
+dir() te imprime los métodos que tenga lo que le hayas metido
+### **listas**
+#### **método append**
+con lista.append() agrega a la lista lo que introduzcas
+#### **función len**
+La función len() te devuelve la cardinalidad/longitud de una lista que le metas
+#### **modificar elementos**
+con lista[i]=variable puedes modificar el elemento en el índice i de la lista
+#### **método insert**
+lista.insert(posición,variable) añade la variable en el índice posición
+#### **método extend**
+lista.extend() recibe otra lista y agrega sus elementos a la lista anterior
+#### **método index**
+lista.index() devuelve el índice donde se encuentra el elemento que hayas ingresado
+#### **método count**
+lista.count() devuelve el número de veces que aparece en la lista el elemento que hayas ingresado
+#### **método pop**
+lista.pop() remueve el último elemento
+#### **método remove**
+lista.remove() remueve el elemento que hayas introducido
+#### **método clear**
+lista.clear() deja tu lista vacía
+#### **método sort**
+lista.sort() ordena alfabéticamente,
+lista.sort(reverse=True) revierte la lista
 
+#### **funciones min y max**
+Existe la función min() y max() para saber cuál es el mínimo y máximo de una lista de números
+### **tuplas**
+Las tuplas se crean igual que las listas pero con paréntesis en vez de [], y no se pueden modificar
 
+range(a,b) retorna tuple([a,b)⋂ℕ) , es decir (a,a+1,...,b-1)
+
+Sólo se pueden crear tuplas de un único elemento de la siguiente manera
+```
+tupla=(elemento,)
+```
+### **palabra reservada del**
+del elimina cosas
+```python
+variable=(1,2,3)
+del variable
+#ahora no existe la variable 'variable'
+```
+### **diccionarios**
+Basicamente son JSON a los que sus atributos los puedes nombrar con cualquier cosa
+```python
+#Python
+miJSON={
+    'clave 1':'valor 1',
+    'clave 2':'valor 2',
+    'clave 3':'valor 3',
+}
+#clave = key
+#valor = value
+```
+```json
+otroJSON={
+    //JSON
+    "atributo 1":"lo que guarda",
+    "atributo 2":"lo que guarda",
+    "atributo 3":"lo que guarda"
+}
+```
+Solo que en python como digo, la clave puede ser lo que sea
+```python
+otroJSONmas={
+    True:'el valor ya era obvio que podía ser lo que sea',
+    123:['lol'],
+    {'hola':'adios',['hola','adios']:False,0:'nashe'}:'Bye'
+}
+```
+#### **método keys**
+diccionario.keys() retorna una lista con las claves
+#### **método items**
+diccionario.items() retorna una lista de tuplas que consisten en clave y valor
+### **Valor nulo**
+El valor nulo es None
+```python
+valor_nulo=None
+```
+### **conjuntos**
+Son basicamente conjuntos de matemáticas, la sintaxis es la misma
+#### **método add**
+conjunto.add() añade al conjunto la variable que se le haya introducido
+#### **método remove**
+conjunto.remove() elimina del conjunto la variable que se le haya introducido
+### **métodos de cadenas**
+* cadena.upper() devuelve la misma cadena pero con todos los caracteres en mayúscula
+* cadena.lower() devuelve la misma cadena pero con todos los caracteres en minúscula
+* cadena.swapcase() devuelve la misma cadena pero con todos los caracteres intercambiados de minúscula a mayúscula y viceversa
+* cadena.capitalize() devuelve la misma cadena pero con el primer caracter en mayúscula
+* cadena.title() devuelve la misma cadena pero con todas las primeras letras de todas las palabras en mayúsculas
+* cadena.count() devuelve el número de veces que aparece la cadena que se haya introducido, en la cadena original
+* cadena.startswith() (todo minúsculas) devuelve el valor de verdad de la frase "empieza por [inserte cadena de texto que se le haya introducido]?"
+* cadena.endswith() lo mismo pero más barato, digo al revés, osea termina
+* cadena.split() devuelve una lista que se obtiene al dividir la cadena cada vez que aparece la cadena que se haya introducido, si no se introduce nada, se separará por espacios
+* cadena.find() devuelve el índice donde empieza dentro de la cadena, la cadena que se le ha introducido
+* cadena.index() devuelve el índice donde aparece por primera vez el caracter introducido
+### **fstrings**
+Sólo hay que agregar una f antes de una cadena y se vuelve un fstring
+```python
+fstring = f'esto es un fstring'
+```
+sirve para introducir variables en la cadena, se introducen con {}
+```python
+fstring = f'esto es un fstring, y esto es una variable: {fstring}'
+# xd, no se si esto hace un bucle o algo
+# Seguro manda error
+```
+### **if else**
+Estructura: 
+```python
+if condición:
+    #código
+elif condición2:
+    #más código
+else:
+    #inclusive más código, esto es una locura
+```
+### **bucle for**
+Estructura:
+```python
+for elemento in lista:
+    #código
+```
+### **bucle while**
+```python
+while condición:
+    #codigo
+    if otra_condición:
+        break
+    # o lo que sea, puedes usar break y continue, igual en
+```
+[bucle for](#bucle-for)
+### **funciones**
+Estructura:
+```python
+def nombre_de_la_función(parámetro1,parámetro2 = 'valor por defecto (si no se introduce nada aquí, se tomará éste valor)'):
+    #código
+```
+También hay funciones anónimas
+```python
+lambda parámetro1, parámetro2: #un pequeño código (esto es lo que va a retornar)
+```
+[Volver al índice](#índice "índice")
+
+---
+
+## Bibliografía
+* [Terminal de Linux y Bash Shell](#terminal-de-linux-y-bash-shell)
+    * [Terminal](#terminal)
+        * https://www.youtube.com/playlist?list=PLDbrnXa6SAzU71YLePBL_BDT4Qc5fYtRf (este canal también tiene un curso de git)
+        * https://jonmircha.com/terminal
+    * [Bash Shell](#bash-shell)
+        * https://www.youtube.com/playlist?list=PLDbrnXa6SAzUsIAqsjVOeyagmmAvmwsG2
+
+[Volver al índice](#índice "índice")
